@@ -18,11 +18,11 @@ class LeNet5(nn.Module):
         x = torch.tanh(self.pool1(x))
         x = torch.tanh(self.conv2(x))
         x = torch.tanh(self.pool2(x))
-        x = x.view(x.size()[0], -1)
+        x = x.view(-1, 5 * 5 * 16)
         x = torch.tanh(self.fc1(x))
         x = torch.tanh(self.fc2(x))
         x = torch.tanh(self.fc3(x))
         
-        output = F.softmax(x, dim=1)
+        output = torch.softmax(x, dim=1)
 
         return output

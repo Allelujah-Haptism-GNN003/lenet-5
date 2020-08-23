@@ -8,6 +8,9 @@ import torch.utils.data
 from impl import LeNet5
 
 if __name__ == "__main__":
+
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+
     preprocess = transforms.Compose([
         transforms.Resize(32),
         transforms.Grayscale(),
@@ -19,12 +22,18 @@ if __name__ == "__main__":
     trainloader = torch.utils.data.DataLoader(traindata, batch_size=5, num_workers=2)
 
     lenet5 = LeNet5()
+    lenet5.to(device)
+
     criterion = nn.CrossEntropyLoss()
     sgd = optim.SGD(lenet5.parameters(), lr=0.02, momentum=0.9)
 
     for epoch in range(5):
 
         for index, (images, labels) in enumerate(trainloader):
+            
+            images = images.to(device)
+            labels = labels.to(device)
+
             sgd.zero_grad()
 
             outputs = lenet5(images)
