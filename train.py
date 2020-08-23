@@ -15,10 +15,8 @@ if __name__ == "__main__":
     ])
 
     traindata = torchvision.datasets.MNIST('./data', train=True, download=True, transform=preprocess)
-    testdata = torchvision.datasets.MNIST('./data', train=False, download=True, transform=preprocess)
 
     trainloader = torch.utils.data.DataLoader(traindata, batch_size=5, num_workers=2)
-    testloader = torch.utils.data.DataLoader(testdata, batch_size=2, num_workers=1)
 
     lenet5 = LeNet5()
     criterion = nn.CrossEntropyLoss()
