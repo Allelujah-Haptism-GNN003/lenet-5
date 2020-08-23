@@ -12,6 +12,6 @@ def lenet5(pretrained=False, **kwargs):
     model = LeNet5()
 
     if pretrained:
-        model.load_state_dict(torch.load('./model/lene5.pth'))
+        model.load_state_dict(torch.load('./model/lenet5.pth'))
 
     return model
