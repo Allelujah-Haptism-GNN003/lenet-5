@@ -45,4 +45,4 @@ if __name__ == "__main__":
 
             if index % 5000 == 4999:
                 print('epoch: {}, iteration: {}, loss: {}'.format((epoch+1), index, loss.item()))
-    torch.save(lenet5.state_dict(), './model/lenet5.model')
+    torch.save(lenet5.state_dict(), './model/lenet5.pth')
